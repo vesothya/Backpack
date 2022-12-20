@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use App\Models\Subject;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
@@ -27,7 +26,6 @@ class Student extends Model
             Storage::disk('uploads')->delete($obj->image);
         });
     }
-
 
     protected $table = 'students';
     // protected $primaryKey = 'id';
@@ -63,7 +61,13 @@ class Student extends Model
     | SCOPES
     |--------------------------------------------------------------------------
     */
-
+        // public function scopeGender($query, $arg)
+        // {
+        //     $products = DB::for(Product::class)
+        //         ->allowedFilters(['gender'])
+        //         ->get();
+        //     return $products;
+        // }
     /*
     |--------------------------------------------------------------------------
     | ACCESSORS

@@ -1,4 +1,4 @@
-{{-- @extends(backpack_view('blank'))
+@extends(backpack_view('blank'))
 
 @php
   $defaultBreadcrumbs = [
@@ -25,34 +25,44 @@
 @endsection
 
 @section('content')
-<div class="card no-padding no-border">
-    <table class="table table-striped mb-0">
-        <tbody>
-            @foreach ($crud->columns() as $column)
-            <tr>
-                <td>
-                    <strong>{!! $column['label'] !!}:</strong>
-                </td>
-                <td>
-                    @php
-                        // create a list of paths to column blade views
-                        // including the configured view_namespaces
-                        $columnPaths = array_map(function($item) use ($column) {
-                            return $item.'.'.$column['type'];
-                        }, \Backpack\CRUD\ViewNamespaces::getFor('columns'));
 
-                        // but always fall back to the stock 'text' column
-                        // if a view doesn't exist
-                        if (!in_array('crud::columns.text', $columnPaths)) {
-                            $columnPaths[] = 'crud::columns.text';
-                        }
-                    @endphp
-                    @includeFirst($columnPaths)
-                </td>
-            </tr>
-            <img src="{{ asset($entry->image) }}" alt="" width="200px">
-            @endforeach
-        </tbody>
-    </table>
+<div class="tab-content">
+    <div class="table-responsive">
+        <table class="table table-striped mb-0">
+            <tbody class="br-0">
+                <tr>
+                    <td><strong>Name</strong></td>
+                    <td>:</td>
+                    <td>{{$entry->name}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Gender</strong></td>
+                    <td>:</td>
+                    <td>{{$entry->Gender}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Phone</strong></td>
+                    <td>:</td>
+                    <td>{{$entry->phone}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Address</strong></td>
+                    <td>:</td>
+                    <td>{{$entry->address}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Subject</strong></td>
+                    <td>:</td>
+                    <td>{{$entry->subjects->implode('subject',' , ')}}</td>
+                </tr>
+                <tr>
+                    <td><strong>Photo</strong></td>
+                    <td>:</td>
+                    <td><img class="img-thumbnail" src="{{ asset($entry->image) }}" alt="" width="100px"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
 </div>
-@endsection --}}
+
+@endsection
